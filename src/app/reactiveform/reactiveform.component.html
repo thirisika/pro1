@@ -1,0 +1,166 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<div class="container-fluid">
+    <form [formGroup]="personalForm" (ngSubmit)="onSubmit()"> 
+        <h5>Personal Details</h5> 
+        <div class="row g-3">
+            <div class="col-2">
+                <label>Name:</label>
+            </div>
+
+
+
+            <div class="col">
+                <input 
+                type="text"
+                 name="name" 
+                 placeholder="Name" 
+                 formControlName="name"
+                 [ngClass]="{'is-invalid':submitted}" />
+            </div>
+         </div>
+
+         <div class="row g-3">
+            <div class="col-2">
+                <label>Age:</label>
+            </div>
+
+            <div class="col">
+                <input 
+                type="text"
+                 name="age" 
+                 placeholder="Age" 
+                 formControlName="age"
+                 [ngClass]="{'is-invalid':submitted}"  />
+            </div>
+         </div>
+
+         <div class="row g-3">
+            <div class="col-2">
+                <label>Email:</label>
+            </div>
+
+            <div class="col">
+                <input 
+                type="text"
+                 name="email" 
+                 placeholder="Email" 
+                 formControlName="email" 
+                 [ngClass]="{'is-invalid':submitted}" />
+            </div>
+         </div>
+
+            <div formGroupName="address">
+                <h4>Address</h4>
+
+                <div class="row g-3">
+                    <div class="col-2">
+                        <label>Street:</label>
+                    </div>
+
+                    <div class="col">
+                        <input 
+                        type="text"
+                         name="street" 
+                         placeholder="Street" 
+                         formControlName="Street" 
+                         [ngClass]="{'is-invalid':submitted}" />
+                    </div>
+                   
+            </div>
+
+
+            <div class="row g-3">
+                <div class="col-2">
+                    <label>City:</label>
+                </div>
+
+                <div class="col">
+                    <input 
+                    type="text"
+                     name="city" 
+                     placeholder="City" 
+                     formControlName="City" 
+                     [ngClass]="{'is-invalid':submitted}" />
+                </div>
+               
+        </div>
+
+        <div class="row g-3">
+            <div class="col-2">
+                <label>State:</label>
+            </div>
+
+            <div class="col">
+                <input 
+                type="text"
+                 name="state" 
+                 placeholder="State" 
+                 formControlName="State" 
+                 [ngClass]="{'is-invalid':submitted}" />
+            </div>
+           
+    </div>
+
+
+    <div class="row g-3">
+        <div class="col-2">
+            <label>Zip:</label>
+        </div>
+
+        <div class="col">
+            <input 
+            type="text"
+             name="zip" 
+             placeholder="Zip" 
+             formControlName="Zip" 
+             [ngClass]="{'is-invalid':submitted}" />
+        </div>
+       
+</div>
+</div>
+
+    <div formArrayName="hobbies">
+        <h4>Hobbies</h4>
+        <button
+        type="button"
+        class="btn btn-primary mb-3"
+        (click)="addHobby()"
+        type="button">
+        Add hobby
+    </button>
+
+    <div
+    *ngFor="let hobby of hobbies.controls; let i=index" class="row g-3">
+    <div class="col-2">
+        <label>Hobby:</label>
+    </div>
+
+    <div class="col">
+        <input 
+        
+         name="hobby-{{i}}" 
+         placeholder="Hobby" 
+         type="text"
+         [formControlName]="i" 
+         [ngClass]="{'is-invalid':submitted}" />
+    </div>
+
+
+</div>
+    </div>
+
+    
+
+         <div class="row g-3">
+            <div class="col-2">
+                <button class="btn btn-primary" [disabled]="personalForm.invalid">Submit</button>
+            </div>
+            </div>
+
+    </form>
+    <br/>
+</div>
+<br/>
+Form value={{ personalForm.value | json}}
+
+
